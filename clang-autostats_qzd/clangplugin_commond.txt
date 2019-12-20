@@ -1,0 +1,59 @@
+> clang --version
+Apple LLVM version 8.1.0 (clang-802.0.42)
+Target: x86_64-apple-darwin16.7.0
+Thread model: posix
+InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+
+
+mutianyou1deiMac:bin mutianyou1$ ./clang --version
+Apple clang version 11.0.0 (clang-1100.0.33.8)
+Target: x86_64-apple-darwin18.7.0
+Thread model: posix
+InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/.
+
+
+Source
+> git clone -b release_39 http://llvm.org/git/llvm llvm
+> cd llvm/tools
+> git clone -b release_39 http://llvm.org/git/clang clang
+--------------------------------------------------------------
+Update
+sudo mkdir llvm
+sudo chown `whoami` llvm
+cd llvm
+export LLVM_HOME=`pwd`
+
+git clone -b release_90 https://github.com/llvm-mirror/llvm.git llvm  
+git clone -b release_90 https://github.com/llvm-mirror/clang.git llvm/tools/clang  
+git clone -b release_90 https://github.com/llvm-mirror/clang-tools-extra.git llvm/tools/clang/tools/extra  
+git clone -b release_90 https://github.com/llvm-mirror/compiler-rt.git llvm/projects/compiler-rt
+
+brew update
+brew install cmake
+
+
+llvm/llvm/tools/clang/examples mkdir CodeChecker(txt cpp exports)
+
+mkdir llvm_build && cd llvm_build
+cmake -G Xcode ../ -DCMAKE_BUILD_TYPE:STRING=MinSizeRel
+
+
+编译 clang，插件，libclang
+
+
+https://www.jianshu.com/p/c16391437f6f
+
+
+配置工程
+OTHER_CFLAGS：-Xclang -load -Xclang /Users/mutianyou1/Documents/llvm_source/dylib/release/ClangAutoStats_qzd.dylib -Xclang -add-plugin -Xclang ClangAutoStats_qzd
+
+add user-defined settings: 
+
+CC:/Users/roy.cao/llvm/llvm_build/Debug/bin/clang
+CXX:/Users/roy.cao/llvm/llvm_build/Debug/bin/clang++
+
+Enable Index-Wihle-Building Functionality: no
+
+
+
+
